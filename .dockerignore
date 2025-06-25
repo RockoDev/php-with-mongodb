@@ -1,0 +1,14 @@
+.DS_Store
+Thumbs.db
+
+.env
+*.env
+.env.*
+!.env.example
+
+vendor
+node_modules
+
+.git
+.gitignore
+.gitmodules
