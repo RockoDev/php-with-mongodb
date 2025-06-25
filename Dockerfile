@@ -1,23 +1,20 @@
 FROM php:8.4.8-apache
 
-RUN apt-get -y update && apt-get -y install libcurl4-openssl-dev pkg-config libssl-dev git curl nodejs npm && rm -rf /var/lib/apt/lists/*
+# Install system dependencies
+RUN apt-get -y update && apt-get -y install libcurl4-openssl-dev pkg-config libssl-dev git curl && rm -rf /var/lib/apt/lists/*
 
+# Install MongoDB extension
 ADD https://github.com/mlocati/docker-php-extension-installer/releases/latest/download/install-php-extensions /usr/local/bin/
-
 RUN chmod +x /usr/local/bin/install-php-extensions
-
 RUN install-php-extensions mongodb
 
-RUN apt-get purge -y --auto-remove build-essential && rm -rf /var/lib/apt/lists/*
-
+# Install Composer
 RUN php -r "readfile('http://getcomposer.org/installer');" | php -- --install-dir=/usr/local/bin/ --filename=composer
-
 RUN chmod +x /usr/local/bin/composer
 
-# ENV NVM_DIR=/usr/local/.nvm
-# ENV NODE_VERSION=22
+# Install NodeJS
+RUN curl -fsSL https://deb.nodesource.com/setup_22.x | bash -
+RUN apt-get install -y nodejs
 
-# RUN mkdir -p "$NVM_DIR" && chown www-data:www-data "$NVM_DIR"
-
-# RUN curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.3/install.sh | bash && \
-#     bash -c ". \"$NVM_DIR/nvm.sh\" && nvm install $NODE_VERSION && nvm use $NODE_VERSION"
+# Clean up
+RUN apt-get purge -y --auto-remove build-essential && rm -rf /var/lib/apt/lists/*

@@ -25,5 +25,6 @@ docker push ghcr.io/rockodev/php-with-mongodb:latest
 
 ## Ejecutar:
 ```sh
-docker run --rm --env-file=.env --pull=always ghcr.io/rockodev/php-with-mongodb:latest
+docker run --rm -it ghcr.io/rockodev/php-with-mongodb:8.4.8 /bin/bash
+docker run --rm --env-file=.env --pull=always -it ghcr.io/rockodev/php-with-mongodb:latest /bin/bash
 ```
