@@ -61,7 +61,7 @@ jobs:
 
   build-linux-arm64:
     name: Build Linux/ARM64 Image
-    runs-on: ubuntu-latest-arm64
+    runs-on: macos-latest
     permissions:
       contents: read
       packages: write
