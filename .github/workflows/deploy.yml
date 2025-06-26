@@ -126,11 +126,11 @@ jobs:
           IMAGE_NAME="ghcr.io/$REPOSITORY_OWNER/${{ github.event.repository.name }}"
           SHA_TAG=${{ github.sha }}
           LATEST_TAG=latest
-          docker manifest create ${IMAGE_NAME}:${SHA_TAG} \
+          docker manifest create --amend ${IMAGE_NAME}:${SHA_TAG} \
             ${IMAGE_NAME}:${SHA_TAG}-amd64 \
             ${IMAGE_NAME}:${SHA_TAG}-arm64
           docker manifest push ${IMAGE_NAME}:${SHA_TAG}
-          docker manifest create ${IMAGE_NAME}:${LATEST_TAG} \
+          docker manifest create --amend ${IMAGE_NAME}:${LATEST_TAG} \
             ${IMAGE_NAME}:${LATEST_TAG}-amd64 \
             ${IMAGE_NAME}:${LATEST_TAG}-arm64
           docker manifest push ${IMAGE_NAME}:${LATEST_TAG}
