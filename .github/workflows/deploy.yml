@@ -57,7 +57,7 @@ jobs:
           ${{ steps.set_image_tags.outputs.IMAGE_NAME }}:${{ steps.set_image_tags.outputs.LATEST_TAG }}-amd64
         cache-from: type=registry,ref=${{ steps.set_image_tags.outputs.IMAGE_NAME }}:${{ steps.set_image_tags.outputs.LATEST_TAG }}-amd64
         cache-to: type=registry,ref=${{ steps.set_image_tags.outputs.IMAGE_NAME }}:${{ steps.set_image_tags.outputs.LATEST_TAG }}-amd64,mode=max
-        platforms: linux/amd64
+        # platforms: linux/amd64
 
   build-linux-arm64:
     name: Build Linux/ARM64 Image
@@ -105,7 +105,7 @@ jobs:
           ${{ steps.set_image_tags.outputs.IMAGE_NAME }}:${{ steps.set_image_tags.outputs.LATEST_TAG }}-arm64
         cache-from: type=registry,ref=${{ steps.set_image_tags.outputs.IMAGE_NAME }}:${{ steps.set_image_tags.outputs.LATEST_TAG }}-arm64
         cache-to: type=registry,ref=${{ steps.set_image_tags.outputs.IMAGE_NAME }}:${{ steps.set_image_tags.outputs.LATEST_TAG }}-arm64,mode=max
-        platforms: linux/arm64
+        # platforms: linux/arm64
 
   create-multi-arch-manifest:
     name: Create Multi-Arch Manifest
