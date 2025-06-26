@@ -55,8 +55,8 @@ jobs:
         tags: |
           ${{ steps.set_image_tags.outputs.IMAGE_NAME }}:${{ steps.set_image_tags.outputs.SHA_TAG }}-amd64
           ${{ steps.set_image_tags.outputs.IMAGE_NAME }}:${{ steps.set_image_tags.outputs.LATEST_TAG }}-amd64
-        cache-from: type=registry,ref=${{ steps.set_image_tags.outputs.IMAGE_NAME }}:${{ steps.set_image_tags.outputs.LATEST_TAG }}-amd64
-        cache-to: type=registry,ref=${{ steps.set_image_tags.outputs.IMAGE_NAME }}:${{ steps.set_image_tags.outputs.LATEST_TAG }}-amd64,mode=max
+        cache-from: type=registry,ref=${{ steps.set_image_tags.outputs.IMAGE_NAME }}:cache-amd64
+        cache-to: type=registry,ref=${{ steps.set_image_tags.outputs.IMAGE_NAME }}:cache-amd64,mode=max
         # platforms: linux/amd64
 
   build-linux-arm64:
@@ -103,8 +103,8 @@ jobs:
         tags: |
           ${{ steps.set_image_tags.outputs.IMAGE_NAME }}:${{ steps.set_image_tags.outputs.SHA_TAG }}-arm64
           ${{ steps.set_image_tags.outputs.IMAGE_NAME }}:${{ steps.set_image_tags.outputs.LATEST_TAG }}-arm64
-        cache-from: type=registry,ref=${{ steps.set_image_tags.outputs.IMAGE_NAME }}:${{ steps.set_image_tags.outputs.LATEST_TAG }}-arm64
-        cache-to: type=registry,ref=${{ steps.set_image_tags.outputs.IMAGE_NAME }}:${{ steps.set_image_tags.outputs.LATEST_TAG }}-arm64,mode=max
+        cache-from: type=registry,ref=${{ steps.set_image_tags.outputs.IMAGE_NAME }}:cache-arm64
+        cache-to: type=registry,ref=${{ steps.set_image_tags.outputs.IMAGE_NAME }}:cache-arm64,mode=max
         # platforms: linux/arm64
 
   create-multi-arch-manifest:
